@@ -1,0 +1,81 @@
+// bytecode!
+
+// increment 1
+pub const wait  : u8 = 0b00000000; // pause execution until interrupt
+pub const reset : u8 = 0b00000001; // reset everything
+
+pub const branch       : u8 = 0b00000100; // add top of stack to inst ptr
+pub const branch_s     : u8 = 0b00000101; // same but respects sign
+
+pub const load_0 : u8 = 0b00001000; // push from save_0
+pub const load_1 : u8 = 0b00001001; // push from save_1
+pub const load_2 : u8 = 0b00001010; // push from save_2
+pub const load_3 : u8 = 0b00001011; // push from save_3
+
+pub const save_0 : u8 = 0b00010000; // pop into save_0
+pub const save_1 : u8 = 0b00010001; // pop into save_1
+pub const save_2 : u8 = 0b00010010; // pop into save_2
+pub const save_3 : u8 = 0b00010011; // pop into save_3
+
+pub const const_0 : u8 = 0b00011000; // push 0
+pub const const_1 : u8 = 0b00011001; // push 1
+pub const const_2 : u8 = 0b00011010; // push 2
+pub const const_3 : u8 = 0b00011011; // push 3
+
+pub const dup_b       : u8 = 0b00011110; // duplicate byte atop stack
+pub const dup_d       : u8 = 0b00011111; // duplicate two bytes atop stack
+
+pub const clear_flags  : u8 = 0b00100000;
+pub const test         : u8 = 0b00100001;
+pub const add          : u8 = 0b00100010;
+pub const add_carry    : u8 = 0b00100011;
+pub const subtract     : u8 = 0b00100100;
+pub const sub_borrow   : u8 = 0b00100101;
+pub const multiply     : u8 = 0b00100110;
+pub const compare      : u8 = 0b00100111; // subtract, no push back
+pub const shift_left   : u8 = 0b00101000;
+pub const shift_right  : u8 = 0b00101001;
+pub const rotate_left  : u8 = 0b00101010;
+pub const rotate_right : u8 = 0b00101011;
+pub const not          : u8 = 0b00101100;
+pub const and          : u8 = 0b00101101;
+pub const inclusive_or : u8 = 0b00101110;
+pub const exclusive_or : u8 = 0b00101111;
+
+// branch
+pub const if_equal         : u8 = 0b00110000;
+pub const if_unequal       : u8 = 0b00110001;
+pub const if_positive      : u8 = 0b00110010;
+pub const if_negative      : u8 = 0b00110011;
+pub const if_odd           : u8 = 0b00110100;
+pub const if_even          : u8 = 0b00110101;
+pub const if_overflow      : u8 = 0b00110110;
+pub const if_no_overflow   : u8 = 0b00110111;
+pub const if_greater_equal : u8 = 0b00111000;
+pub const if_less_equal    : u8 = 0b00111001;
+pub const if_greater       : u8 = 0b00111010;
+pub const if_less          : u8 = 0b00111011;
+pub const if_higher        : u8 = 0b00111100; // unsigned >
+pub const if_lower         : u8 = 0b00111101; // unsigned <
+pub const if_carry         : u8 = 0b00111110;
+pub const if_no_carry      : u8 = 0b00111111;
+
+// increment 2
+pub const imm_branch   : u8 = 0b01000000; // add immediate byte to inst ptr
+pub const imm_branch_s : u8 = 0b01000001; // same but respects sign
+pub const imm_const  : u8 = 0b01000010; // push immediate value
+pub const impl_dep_2 : u8 = 0b01000011;
+
+
+// increment 3
+pub const goto      : u8 = 0b10000010; // set instruction pointer
+pub const set_stack : u8 = 0b10000011; // set stack pointer
+pub const imm_load          : u8 = 0b10001100; // load from immediate address
+pub const imm_load_offset_b : u8 = 0b10001101; // above plus top byte of stack
+pub const load              : u8 = 0b10001110; // from top two bytes of stack
+pub const impl_dep_0        : u8 = 0b10001111;
+pub const imm_save          : u8 = 0b10010100; // save to immediate address
+pub const imm_save_offset_b : u8 = 0b10010101; // above plus top byte of stack
+pub const save              : u8 = 0b10010110; // from top two bytes of stack
+pub const impl_dep_1        : u8 = 0b10010111;
+

@@ -1,0 +1,82 @@
+"SUM_EQUALS_64"
+
+    let program: Vec<u8> = vec![
+        // initialize
+        SET_STACK, 0x00, 0x01,
+        CONST_3, SAVE_0,
+
+        // START of program
+        ENTER,
+        IMM_CONST, 48,
+        IMM_CONST, 16,
+        IMM_CONST_D, 0x10, 0x00, // SUM_EQUALS_64
+        CALL,
+        LEAVE,
+        WAIT,
+
+        // subroutine SUM_EQUALS_64
+        LOCAL_1,
+        LOCAL_0,
+        ADD,
+        LOCAL_2,
+        IMM_CONST, 64,
+        COMPARE,
+        IF_EQUAL, IMM_BRANCH, 2,
+        IMM_BRANCH, 3,
+        CONST_1,
+        SAVE_0,
+        GOBACK,
+        CONST_0,
+        SAVE_0,
+        GOBACK,
+
+    ];
+
+"BIG_BIG"
+
+    let program: Vec<u8> = vec![
+        // initialize
+        SET_STACK, 0x00, 0x01,
+
+        // START of program
+        ENTER,
+        IMM_CONST_D, 0xF0, 0xD1,
+        IMM_CONST_D, 0xBD, 0x0C,
+        IMM_CONST_D, 0x1C, 0x00, // BIG_ADD
+        CALL,
+        LEAVE,
+
+        ENTER,
+        IMM_CONST_D, 0x1E, 0xEF,
+        IMM_CONST_D, 0x2F, 0x30,
+        IMM_CONST_D, 0x25, 0x00, // BIG_SUBTRACT
+        CALL,
+        LEAVE,
+
+        WAIT,
+
+        // Subroutine BIG_ADD
+        LOCAL_0,
+        LOCAL_2,
+        ADD,
+        LOCAL_1,
+        LOCAL_3,
+        ADD_CARRY,
+
+        SAVE_0,
+        SAVE_1,
+        GOBACK,
+
+        // Subroutine BIG_SUBTRACT
+        LOCAL_0,
+        LOCAL_2,
+        SUBTRACT,
+        LOCAL_1,
+        LOCAL_3,
+        SUB_BORROW,
+
+        SAVE_2,
+        SAVE_3,
+        GOBACK,
+
+    ];
