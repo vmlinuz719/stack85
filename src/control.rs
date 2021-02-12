@@ -656,7 +656,6 @@ pub fn test_pgm() {
         });
 
         exec.join().unwrap();
-        monitor.
 
         let control = ptr.clone().get();
         (*control).view();
